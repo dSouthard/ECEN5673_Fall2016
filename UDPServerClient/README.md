@@ -1,6 +1,6 @@
-# UDP Client/Server Program
+# UDP Server/Client Program
 
-*Description*: Write a simple UDP Client/Server program, where the client sends a UDP message to the server and the server sends a reply to the client. Record the local clock times of when each message is sent and received. Record these timing by first running the client on Machine A and the server on Machine B, and then running the client on Machine B and the server on Machine A for the following scenarios:
+*Description*: Write a simple UDP Server/Client program, where the client sends a UDP message to the server and the server sends a reply to the client. Record the local clock times of when each message is sent and received. Record these timing by first running the client on Machine A and the server on Machine B, and then running the client on Machine B and the server on Machine A for the following scenarios:
 
 0. Machines A and B are on the _same machine_.
 1. Machines A and B are on _different machines_ within the _same local network_.
@@ -28,12 +28,12 @@
 
 #### Files
 
-- ClientServer.ipynb: Jupyter Notebook containing Python code for the client/server program
+- UDPServerClient.ipynb: Jupyter Notebook containing Python code for the client/server program
         
     * When running the program, 2 inputs are prompted from the user: choosing a number 0-3 to determine the scenario being
         tested, as listed above [default = 0], and choosing 0 or 1 to run the program as the client or server [default = 0]
 
-- UDPClientServerOutput[X][Y].txt: files containing recording time for messages being sent/received
+- UDPServerClientOutput[X][Y].txt: files containing recording time for messages being sent/received
         
     * X: The number of the scenario being run, as listed above
         
