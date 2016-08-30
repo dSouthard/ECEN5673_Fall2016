@@ -9,6 +9,21 @@
 
 ***
 
+#### Pseudocode
+
+1. Determine which scenario is being run from list above (user input).
+2. Determine whether machine is running as client or server (user input).
+3. Set up server IP address and port.
+4. Create UDP socket.
+5. Bind the server.
+6. Have client send message, recording time message was sent.
+7. Wait for server to receive message, record time recieved, and send reply, recording time reply was send.
+8. Wait for client to receive reply, record time reply was received.
+9. Repeat at least 5 times.
+10. Write timing results to resultFile, calculating latencies and statistical measurements for each time measurement. Generate resulting plots.
+
+***
+
 #### Files
 
 - ClientServer.ipynb: Jupyter Notebook containing Python code for the client/server program
@@ -24,6 +39,8 @@
 
 - ResultCalculations.ipynb: Jupyter Notebook containing the Python code for analyzing the program results
 
+- ECEN5673DianaSouthardHW1.pdf: Final report answering questions listed below
+
 ***
 
 #### Questions
@@ -37,16 +54,3 @@
 
 ***
 
-#### Pseudocode
-1. Determine which scenario is being run from list above (user input).
-2. Determine whether machine is running as client or server (user input).
-3. Set up server IP address and port.
-4. Create UDP socket.
-5. Bind the server.
-6. Have client send message, recording time message was sent.
-7. Wait for server to receive message, record time recieved, and send reply, recording time reply was send.
-8. Wait for client to receive reply, record time reply was received.
-9. Repeat at least 5 times.
-10. Write timing results to resultFile, calculating latencies and statistical measurements for each time measurement. Generate resulting plots.
-
-***
