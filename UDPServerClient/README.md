@@ -13,14 +13,14 @@
 
 - ClientServer.ipynb: Jupyter Notebook containing Python code for the client/server program
         
-        - When running the program, 2 inputs are prompted from the user: choosing a number 0-3 to determine the scenario being
+    * When running the program, 2 inputs are prompted from the user: choosing a number 0-3 to determine the scenario being
         tested, as listed above [default = 0], and choosing 0 or 1 to run the program as the client or server [default = 0]
 
 - UDPClientServerOutput[X][Y].txt: files containing recording time for messages being sent/received
         
-        - X: The number of the scenario being run, as listed above
+    * X: The number of the scenario being run, as listed above
         
-        - Y: 0 = Client time, 1 = Server time
+    * Y: 0 = Client time, 1 = Server time
 
 - ResultCalculations.ipynb: Jupyter Notebook containing the Python code for analyzing the program results
 
