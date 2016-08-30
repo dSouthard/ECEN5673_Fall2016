@@ -20,7 +20,9 @@
 7. Wait for server to receive message, record time recieved, and send reply, recording time reply was send.
 8. Wait for client to receive reply, record time reply was received.
 9. Repeat at least 5 times.
-10. Write timing results to resultFile, calculating latencies and statistical measurements for each time measurement. Generate resulting plots.
+10. Write timing results to output files
+11. Read total output files into result calculation program, calculating latencies and statistical measurements for each time measurement. 
+12. Generate resulting plots.
 
 ***
 
