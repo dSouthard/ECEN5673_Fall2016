@@ -31,17 +31,19 @@
 - UDPServerClient.ipynb: Jupyter Notebook containing Python code for the client/server program
         
     * When running the program, 2 inputs are prompted from the user: choosing a number 0-3 to determine the scenario being
-        tested, as listed above [default = 0], and choosing 0 or 1 to run the program as the client or server [default = 0]
+    tested, as listed above [default = 0], and choosing 0 or 1 to run the program as the client or server [default = 0]
 
-- UDPServerClientOutput[X][Y].txt: files containing recording time for messages being sent/received
+- In folders LaptopClient and LaptopServer: UDPServerClientOutput[X][Y].txt: files containing recording time for messages being sent/received
         
     * X: The number of the scenario being run, as listed above
         
     * Y: 0 = Client time, 1 = Server time
 
-- ResultCalculations.ipynb: Jupyter Notebook containing the Python code for analyzing the program results
+    * LaptopClient results are from when the laptop (Machine A) served as client. LaptopServer results are from when the laptop served as Server. Results from Scenarios 0 and 3 are identical because the laptop already served as both client and server for scenario 0, and because I could not enable port forwarding on an outside network to enable to laptop to serve as the server and receive messages from outside the network.
 
-- ECEN5673DianaSouthardHW1.pdf: Final report answering questions listed below
+- ResultCalculations.xlsx: Excel Notebook containing the setup for analyzing the program results. This was originally going to be additionally Python code, but I ran out of time to write it before the results were due.
+
+- ECEN5673_DianaSouthard_HW1_3.pdf: Final report answering questions listed below
 
 ***
 
