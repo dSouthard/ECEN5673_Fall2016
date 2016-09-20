@@ -13,9 +13,7 @@ _FTQueue_ must be able to tolerate up to two server crash failures.
 
 ***
 
-#### Pseudocode
-
-**Setup**
+#### Description
 
 There will be one client and a cluster of servers.
 
@@ -34,14 +32,31 @@ the current leader in the cluster. While running, the client should await input 
   3. Each node can vote for at most only 1 candidate.
   4. If a candidate reaches an election time-out occurs without a leader being chosen, the term in incremented and the election restarts.
 
-- Normal Operations:
+- Normal Operations [_Log Replications_]:
   1. Leader sends out a regular heartbeat message to all other nodes. Each time a follower receives a heartbeat node, it resets its heartbeat timeout.
+  2. For each command:
+    
+    a. Leader recevied command from client.
+    
+    b. Leader adds command to his log, uncommitted.
+    
+    c. Leader forwards request to all followers in next AppendEntry message.
+    
+    d. Once leader has received confirmation from a majority of the followers, it commits the entry in its log and informs the followers that the entry is committed.
+
+####Psuedocode
+  1. Establish the server cluster as group of followers.
+  2. Establish servers' timeouts.
+  3. Establish the client to the cluster.
+  4. Wait for commands from input.
+  5. Return results from commands.
+  6. Implement exit command.
 
 ***
 
 #### Files
 
-- FTQueue.ipynb: Jupyter Notebook containing Python code for the FTQueue data structure program
+- RaftImplementation.java: Java class containing setup and main function to run application.
 
 - ECEN5673DianaSouthardHW2.pdf: Final report describing implemenation and current status of the data structure
 
