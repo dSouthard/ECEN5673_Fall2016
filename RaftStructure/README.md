@@ -35,14 +35,10 @@ the current leader in the cluster. While running, the client should await input 
 - Normal Operations [_Log Replications_]:
   1. Leader sends out a regular heartbeat message to all other nodes. Each time a follower receives a heartbeat node, it resets its heartbeat timeout.
   2. For each command:
-    
-    a. Leader recevied command from client.
-    
-    b. Leader adds command to his log, uncommitted.
-    
-    c. Leader forwards request to all followers in next AppendEntry message.
-    
-    d. Once leader has received confirmation from a majority of the followers, it commits the entry in its log and informs the followers that the entry is committed.
+    1. Leader recevied command from client.
+    2. Leader adds command to his log, uncommitted.
+    3. Leader forwards request to all followers in next AppendEntry message.
+    4. Once leader has received confirmation from a majority of the followers, it commits the entry in its log and informs the followers that the entry is committed.
 
 ####Psuedocode
   1. Establish the server cluster as group of followers.
