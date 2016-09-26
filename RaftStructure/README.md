@@ -52,12 +52,48 @@ the current leader in the cluster. While running, the client should await input 
 
 #### Files
 
-- RaftImplementation.java: Java class containing setup and main function to run application.
-
-- ECEN5673DianaSouthardHW2.pdf: Final report describing implemenation and current status of the data structure
+- AtomixRaft/src/main/diana/ecen5673java/FTQueue.java: Java class containing the FTQueue object, interfacing an Atomix DistributedQueue object.
+- AtomixRaft/src/main/diana/ecen5673java/FTQueueClient.java: Java class containing the client interface for the FTQueue object.
+- AtomixRaft/src/main/diana/ecen5673java/FTQueueServer.java: Java class containing the server interface for the FTQueue object.
 
 ***
 
 #### Current Status
 
-Nothing has been done yet, Raft is still being researched
+To start up the cluster, the FTQueueServer class must be run. In order to survive 2 server failures:
+
+``` 
+The ideal number of replicas should be calculated as 2f + 1 where f is the number of failures to tolerate. 
+``` 
+
+Therefore, 5 servers are needed at a minimum.
+
+This project was built upon the [Atomix](http://atomix.io/atomix/) Raft implementation, which creates a cluster of [AtomixReplicas](http://atomix.io/atomix/docs/clustering/) which can be accessed through [AtomixClients](http://atomix.io/atomix/docs/getting-started/#creating-a-client). To create a distributed queue, an Atmoix [DistributedQueue](http://atomix.io/atomix/docs/collections/#distributedqueue) was interfaced through the FTQueue structure. After creating the client, the user is instructed as to which commands can be accepted in creating and modifying an FTQueue object. Servers can query the same FTQueue object to ensure that all servers see the same information after pushes/pops. Server crashes are simulated by instructing any server to [leave the cluster group](http://atomix.io/atomix/docs/groups/#leaving-the-group). 
+
+The submitted files were constructed and run on Eclipse Neon.
+
+**Servers**
+
+To start up the cluster, the FTQueueServer can either take in the desired hostnames/ports, or run through default names by specifying which machine you desire to run. For 5 servers, 5 different terminal windows must be run with the following commands:
+```
+java FTQueueServer 1  # Corresponds with # java FTQueueServer localhost:5000 localhost:5001 localhost:5002 localhost:5003 localhost:5004
+java FTQueueServer 2  # Corresponds with # java FTQueueServer localhost:5001 localhost:5000 localhost:5002 localhost:5003 localhost:5004
+java FTQueueServer 3  # Corresponds with # java FTQueueServer localhost:5002 localhost:5000 localhost:5001 localhost:5003 localhost:5004
+java FTQueueServer 4  # Corresponds with # java FTQueueServer localhost:5003 localhost:5000 localhost:5001 localhost:5002 localhost:5004
+java FTQueueServer 5  # Corresponds with # java FTQueueServer localhost:5004 localhost:5000 localhost:5001 localhost:5002 localhost:5003
+```
+By default, server logs are saved in corresponding log files log1-log5.
+
+Once an AtomixReplica is created, it will attempt to join the cluster of the other host addresses in the cluster, with one replica being elected as the leader. The output of the terminal will show which replica is elected leader, the current term number, and messages whenever a member leaves/joins the group. The servers can receive commands to exit/rejoin a group (simulating server crashes), query the current status of a specified queue by queue label, or to exit the program.
+
+**Client**
+
+The FTQueueClient can be started before/after the server cluster has been started. It can be supplied with a list of the cluster addresses, or use the default values, as seen below:
+```
+java FTQueueClient # Corresponds with # java FTQueueClient localhost:5000 localhost:5001 localhost:5002 localhost:5003 localhost:5004
+```
+The program then prompts the user to input commands, first creating a queue and then manipulating it.
+
+**Issues**
+
+Currently, is the server cluster is running and the client is restarted, the client will not think that the distributed queues exist and will require the user to recreate FTQueue objects with the same labels. Calling the create command using an exisiting label at this point will not create a new queue, but will reconnect with the exisiting cluster's distributed resource.
